@@ -1,0 +1,63 @@
+<title>ToDo List</title>
+<div class="outer" >
+<div class="container" >
+<div class="row">
+<div class="span7">
+	<h2 class="headertext">Current TODO List:</h2>
+		<table class ="table table-bordered" id="sortable">
+			<thead>
+				<div class="navbar">
+				<div class="navbar-blue">
+					<h3 class="bartext">
+<%= @todolist.todolist_name%><%= link_to "", edit_todolist_path(@todolist), class: "icon-pencil icon-white editproject"%> 
+<%= link_to "", @todolist, :confirm => 'Are you sure?',:method => :delete, class: "icon-trash icon-white delproject"%>				</h3>
+				</div>
+				</div>
+				<div class="navbar">
+				<div class="navbar-gray editnav">
+				<div class="input-append">
+<%= form_for [@todolist, @task], :html => {:class => "navbar-form"} do |t| %>
+<%= t.number_field :priority, class: "input_prior"%>
+<%= t.text_field :task_name, class: "input_task", placeholder:"Start typing here to create task..."%>
+<%= t.submit "Add Task", class: "butn btn-add" %>
+<% end %>
+				</div>
+				</div>
+				</div>
+			</thead>
+			<tbody>
+<% @todolist.tasks.each do |task| %>
+<% if task.persisted? %>
+				<tr>
+				<td class='fixed2 centered'>
+<% if task.completed == true %>
+<% complete = "icon-check" %>
+<% else %>
+<% complete = "icon-edit" %>
+<% end %>
+<%= link_to "", complete_todolist_task_path(@todolist.id, task.id), class: "#{complete}" %>
+				</td>
+				<td class='fixed1'>
+<% if task.completed == false %>
+<% if task.deadline == nil %>
+<strong><%= task.task_name %></strong>
+<% else %>
+<strong><%= task.task_name %></strong><small> (deadline: <%= task.deadline %>)</small>
+<% end %>
+<% else %>
+<strike><strong><%= task.task_name %></strong></strike>
+<% end %>
+				</td>
+				<td class='fixed4 centered'>
+<%= task.priority %>
+				</td>
+				<td class='centered fixed3'>
+<%= link_to "", edit_todolist_task_path(@todolist, task), class: "icon-pencil" %> | <%= link_to "", set_deadline_todolist_task_path(@todolist.id, task.id), class: "icon-exclamation-sign" %> | <%= link_to "", todolist_task_path(@todolist.id, task.id), :method => :delete, class: "icon-trash" %>
+				</td>
+				</tr>
+<% end %>
+<% end %>
+			</tbody>
+		</table>
+<center><%= link_to '', new_todolist_path, class: 'addlist' %></center>
+</div></div></div></div>

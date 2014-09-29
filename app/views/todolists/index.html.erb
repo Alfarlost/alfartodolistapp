@@ -1,0 +1,28 @@
+<title>ToDo List</title>
+<div class="container" >
+<div class="row">
+<div class="span7">
+<h2 class="headertext">Chose TODO List</h2>
+<table class ="table table-bordered">
+<thead>
+<div class="navbar">
+<div class="navbar-blue">
+<h3 class="bartext">Your TODO Lists:</h3>
+</div>
+</div>
+</thead>
+<tbody>
+<tr>
+<% @user_todolists.each do |t| %>
+<td class='fixed5'>
+<strong><%= link_to "#{t.todolist_name}", todolist_path(t), :method => :get %></strong>
+</td>
+<td class='centered fixed3'>
+<%= link_to "", edit_todolist_path(t), class: "icon-pencil"%> | <%= link_to "", t, :confirm => 'Are you sure?',:method => :delete, class: "icon-trash"%>
+</td>
+</tr>
+<% end %>
+</tbody>
+</table>
+<center><%= link_to '', new_todolist_path, class: 'addlist' %></center>
+</div></div></div>

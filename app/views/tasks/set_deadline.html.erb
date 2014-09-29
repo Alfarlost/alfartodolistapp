@@ -1,0 +1,14 @@
+<title>ToDo List</title>
+<div class="container" >
+<div class="row">
+<div class="span7">
+<h2 class="headertext">Set deadline for task "<%= @task.task_name%>":</h2>
+<center>
+<%= form_for [@todolist, @task], :url => { :action => "create_deadline" } do |t| %>
+<%= t.datetime_select :deadline, :start_year => Time.now.year, :end_year => Time.now.year + 10, :ampm =>true,  :order => [:day, :month, :year]  %>
+<%= t.submit "Set deadline" %>
+<% end %>
+</center>
+<center><%= link_to 'Back to the TODO List', todolist_path(@todolist), class: 'btn btn-primary' %></center>
+</div></div></div>
+

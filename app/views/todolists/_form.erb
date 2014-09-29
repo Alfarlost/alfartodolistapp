@@ -1,0 +1,20 @@
+<title>ToDo List</title>
+<div class="container" >
+<div class="row">
+<div class="span7">
+<div class="navbar">
+<div class="navbar-blue">
+<h3 class="bartext">Edit TODO List</h3>
+</div>
+</div>
+<div class="navbar">
+<div class="navbar-gray projnav">
+<div class="input-append">
+<%= form_for @todolist do |p| %>
+<%= p.text_field :todolist_name, class: "input_project", placeholder:"Start typing here to rename a TODO List..."%>
+<%= p.submit "Rename", class: "butn btn-add" %>
+<%end%>
+
+<center><%= link_to 'Back to ToDo Lists', todolist_path, class: 'btn btn-primary' %></center>
+</div></div></div>
+</div></div></div>

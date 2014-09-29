@@ -1,0 +1,24 @@
+development:
+  adapter: postgresql
+  encoding: unicode
+  database: my_app_development
+  pool: 5
+  username: alfar
+  password: zaqwer12
+
+test:
+  adapter: postgresql
+  encoding: unicode
+  database: my_app_test
+  pool: 5
+  username: alfar
+  password: zaqwer12
+
+production:
+  adapter: postgresql
+  encoding: unicode
+  database: my_app_production
+  pool: 5
+  username: alfar
+  password: zaqwer12
+
